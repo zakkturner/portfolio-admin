@@ -21,9 +21,9 @@
                     >
                 </li> -->
                 <li>
-                    <a class="pt-trigger" href="#portfolio" data-animation="19"
+                    <a class="pt-trigger" href="/projects" data-animation="19"
                         ><i class="menu-icon pe-7s-icon pe-7s-portfolio"></i
-                        >Portfolio</a
+                        >Projects</a
                     >
                 </li>
                 <li>

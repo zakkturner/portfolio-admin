@@ -8,9 +8,15 @@ use Illuminate\Foundation\Auth\User;
 
 class Project extends Model
 {
+
     use HasFactory;
     public function user()
     {
         $this->belongsTo(User::class);
+    }
+
+    public function category()
+    {
+        $this->belongsTo(Category::class);
     }
 }
