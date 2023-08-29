@@ -14,7 +14,14 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Projects/Index');
+        $user = request()->user();
+
+        return Inertia::render(
+            'Projects/Index',
+            [
+                "projects" => $user->projects()->latest()->get()
+            ]
+        );
     }
 
     /**
