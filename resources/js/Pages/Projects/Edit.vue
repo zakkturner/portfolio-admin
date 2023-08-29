@@ -88,10 +88,8 @@
         </div>
     </AuthenticatedLayout>
 </template>
-<script setup>
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { useForm } from "@inertiajs/vue3";
 
+<script setup>
 const formData = useForm({
     name: "",
     description: "",
@@ -100,9 +98,9 @@ const formData = useForm({
     category_id: "",
     site: "",
 });
-
-function submit() {
-    console.log(formData);
-    formData.post(route("projects.store"));
-}
+defineProps({
+    project: Object,
+});
 </script>
+
+<style lang="scss" scoped></style>
