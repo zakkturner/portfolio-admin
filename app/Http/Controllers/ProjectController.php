@@ -45,7 +45,7 @@ class ProjectController extends Controller
             'site' => 'required'
         ]);
         $attributes['user_id'] = auth()->id();
-        $attributes['img_src'] = request()->img_src;
+        $attributes['img_src'] = request()->file('img_src')->store('project_images');
         Project::create($attributes);
         return redirect()->route('projects.index')->with('message', 'Job Created Successfully');
     }

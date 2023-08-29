@@ -5,7 +5,10 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="bg-white p-6">
                         <h1>Create New Post</h1>
-                        <form @submit.prevent="submit">
+                        <form
+                            @submit.prevent="submit"
+                            enctype="multipart/form-data"
+                        >
                             <div class="flex flex-col mb-4">
                                 <label for="name">Name</label>
                                 <input
