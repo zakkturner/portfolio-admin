@@ -12,7 +12,7 @@
                                     type="text"
                                     name="name"
                                     id=""
-                                    v-model="name"
+                                    v-model="formData.name"
                                 />
                             </div>
                             <div class="flex flex-col mb-4">
@@ -21,7 +21,7 @@
                                     type="text"
                                     name="description"
                                     id=""
-                                    v-model="description"
+                                    v-model="formData.description"
                                 ></textarea>
                             </div>
                             <div class="flex flex-col mb-4">
@@ -32,7 +32,7 @@
                                     type="text"
                                     name="short-description"
                                     id=""
-                                    v-model="short_description"
+                                    v-model="formData.short_description"
                                 ></textarea>
                             </div>
                             <div class="flex flex-col mb-4">
@@ -48,8 +48,11 @@
                                 />
                             </div>
                             <div class="flex flex-col mb-4">
-                                <label for="categories">Category</label>
-                                <select name="categories" v-model="categories">
+                                <label for="category_id">Category</label>
+                                <select
+                                    name="category_id"
+                                    v-model="formData.category_id"
+                                >
                                     <option
                                         value="none"
                                         selected
@@ -58,9 +61,9 @@
                                     >
                                         Select a Category
                                     </option>
-                                    <option value="frontend">Frontend</option>
-                                    <option value="ecommerce">Ecommerce</option>
-                                    <option value="php">PHP</option>
+                                    <option value="1">Frontend</option>
+                                    <option value="2">Ecommerce</option>
+                                    <option value="3">PHP</option>
                                 </select>
                             </div>
                             <div class="flex flex-col mb-4">
@@ -69,7 +72,7 @@
                                     type="text"
                                     name="site"
                                     id=""
-                                    v-model="site"
+                                    v-model="formData.site"
                                 />
                             </div>
                             <div class="flex flex-col mb-4">
@@ -91,11 +94,12 @@ const formData = useForm({
     description: "",
     short_description: "",
     img_src: null,
-    categories: "",
+    category_id: "",
     site: "",
 });
 
 function submit() {
+    console.log(formData);
     formData.post(route("projects.store"));
 }
 </script>

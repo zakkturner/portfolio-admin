@@ -37,7 +37,17 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = request()->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'short_description' => 'required',
+            'category_id' => 'required',
+            'site' => 'required'
+        ]);
+        $attributes['user_id'] = auth()->id();
+        $attributes['img_src'] = request()->img_src;
+        Project::create($attributes);
+        return redirect()->route('projects.index')->with('message', 'Job Created Successfully');
     }
 
     /**
