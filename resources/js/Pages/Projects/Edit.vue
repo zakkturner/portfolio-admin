@@ -3,6 +3,14 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="flex justify-end px-6 pt-6">
+                        <button
+                            class="bg-red-500 text-white border-0"
+                            @click="show = true"
+                        >
+                            Delete Project
+                        </button>
+                    </div>
                     <div class="bg-white p-6">
                         <h1>Edit {{ project.name }}</h1>
                         <form
@@ -78,6 +86,21 @@
                                 </select>
                             </div>
                             <div class="flex flex-col mb-4">
+                                <label for="status">Status</label>
+                                <select name="status" v-model="formData.status">
+                                    <option
+                                        value="none"
+                                        selected
+                                        disabled
+                                        hidden
+                                    >
+                                        Select a Status
+                                    </option>
+                                    <option value="published">Published</option>
+                                    <option value="hidden">Hidden</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col mb-4">
                                 <label for="site">Project Url</label>
                                 <input
                                     type="text"
@@ -86,16 +109,10 @@
                                     v-model="formData.site"
                                 />
                             </div>
-                            <div class="flex flex-col mb-4">
-                                <input type="submit" value="Submit" />
+                            <div class="flex justify-end mb-4">
+                                <input type="submit" value="Update Project" />
                             </div>
                         </form>
-                        <button
-                            class="bg-red-500 text-white border-0"
-                            @click="show = true"
-                        >
-                            Delete Project
-                        </button>
                     </div>
                 </div>
             </div>

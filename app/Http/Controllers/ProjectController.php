@@ -42,7 +42,8 @@ class ProjectController extends Controller
             'description' => 'required',
             'short_description' => 'required',
             'category_id' => 'required',
-            'site' => 'required'
+            'site' => 'required',
+            'status' => 'required'
         ]);
         $attributes['user_id'] = auth()->id();
         $attributes['img_src'] = request()->file('img_src')->store('project_images');
@@ -81,7 +82,8 @@ class ProjectController extends Controller
             'description' => 'required',
             'short_description' => 'required',
             'category_id' => 'required',
-            'site' => 'required'
+            'site' => 'required',
+            'status' => 'required'
         ]);
         if ($attributes['img_src'] ?? false) {
             $attributes['img_src'] = request()->file('img_src')->store('project_images');

@@ -70,6 +70,21 @@
                                 </select>
                             </div>
                             <div class="flex flex-col mb-4">
+                                <label for="status">Status</label>
+                                <select name="status" v-model="formData.status">
+                                    <option
+                                        value="none"
+                                        selected
+                                        disabled
+                                        hidden
+                                    >
+                                        Select a Status
+                                    </option>
+                                    <option value="published">Published</option>
+                                    <option value="hidden">Hidden</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col mb-4">
                                 <label for="site">Project Url</label>
                                 <input
                                     type="text"
@@ -99,6 +114,7 @@ const formData = useForm({
     img_src: null,
     category_id: "",
     site: "",
+    status: "",
 });
 
 function submit() {
