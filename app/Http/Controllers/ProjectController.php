@@ -55,7 +55,9 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return Inertia::render('Projects/Show', [
+            'project' => $project
+        ]);
     }
 
     /**
@@ -64,6 +66,9 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         //
+        return Inertia::render('Projects/Edit', [
+            'project' => $project
+        ]);
     }
 
     /**
@@ -71,7 +76,19 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $attributes = request()->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'short_description' => 'required',
+            'category_id' => 'required',
+            'site' => 'required'
+        ]);
+        if ($attributes['img_src'] ?? false) {
+            $attributes['img_src'] = request()->file('img_src')->store('project_images');
+        }
+        $project->update($attributes);
+
+        return redirect()->route('projects.index')->with('message', 'Project Updated Successfully');
     }
 
     /**
@@ -79,6 +96,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('projects.index')->with('message', 'Project deleted Successfully');
     }
 }

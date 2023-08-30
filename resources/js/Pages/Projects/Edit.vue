@@ -4,7 +4,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="bg-white p-6">
-                        <h1>Create New Post</h1>
+                        <h1>Edit {{ project.name }}</h1>
                         <form
                             @submit.prevent="submit"
                             enctype="multipart/form-data"
@@ -40,15 +40,23 @@
                             </div>
                             <div class="flex flex-col mb-4">
                                 <label for="img_src">Image</label>
-                                <input
-                                    type="file"
-                                    name="img_src"
-                                    id=""
-                                    @input="
-                                        formData.img_src =
-                                            $event.target.files[0]
-                                    "
-                                />
+                                <div class="flex justify-between">
+                                    <input
+                                        type="file"
+                                        name="img_src"
+                                        id=""
+                                        @input="
+                                            formData.img_src =
+                                                $event.target.files[0]
+                                        "
+                                    />
+                                    <div class="h-1/2">
+                                        <h5>Old Image</h5>
+                                        <img
+                                            :src="`/storage/${project.img_src}`"
+                                        />
+                                    </div>
+                                </div>
                             </div>
                             <div class="flex flex-col mb-4">
                                 <label for="category_id">Category</label>
@@ -82,25 +90,56 @@
                                 <input type="submit" value="Submit" />
                             </div>
                         </form>
+                        <button
+                            class="bg-red-500 text-white border-0"
+                            @click="show = true"
+                        >
+                            Delete Project
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </AuthenticatedLayout>
+    <Modal :show="show">
+        <div class="p-4 flex flex-col">
+            <h3 class="mb-6">Are you sure you want to delete this project?</h3>
+            <div class="flex justify-between">
+                <button @click="show = false">Cancel</button>
+                <Link
+                    class="bg-red-500 text-white border-0"
+                    :href="route('projects.destroy', project.id)"
+                    as="button"
+                    method="DELETE"
+                    @click="show = false"
+                >
+                    Yes, Delete
+                </Link>
+            </div>
+        </div>
+    </Modal>
 </template>
 
 <script setup>
-const formData = useForm({
-    name: "",
-    description: "",
-    short_description: "",
-    img_src: null,
-    category_id: "",
-    site: "",
-});
-defineProps({
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import Modal from "@/Components/Modal.vue";
+import { ref } from "vue";
+import { useForm, Link } from "@inertiajs/vue3";
+const props = defineProps({
     project: Object,
 });
+const show = ref(false);
+const formData = useForm({
+    name: props.project.name,
+    description: props.project.description,
+    short_description: props.project.short_description,
+    img_src: null,
+    category_id: props.project.category_id,
+    site: props.project.site,
+});
+function submit() {
+    formData.put(route("projects.update", props.project.id));
+}
 </script>
 
 <style lang="scss" scoped></style>
