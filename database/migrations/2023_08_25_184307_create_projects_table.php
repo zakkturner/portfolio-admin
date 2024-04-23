@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('short_description');
             $table->string('site');
             $table->string('img_src')->nullable();
+            $table->boolean('freelance');
+            $table->boolean('personal');
             $table->timestamps();
         });
     }

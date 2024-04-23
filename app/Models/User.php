@@ -47,4 +47,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Project::class);
     }
+    public function submissions()
+    {
+        return $this->hasMany(FormSubmission::class);
+    }
 }

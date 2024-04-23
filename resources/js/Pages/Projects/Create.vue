@@ -1,10 +1,10 @@
 <template>
     <AuthenticatedLayout>
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="bg-white p-6">
-                        <h1>Create New Post</h1>
+                        <h1>Create New Project</h1>
                         <form
                             @submit.prevent="submit"
                             enctype="multipart/form-data"
@@ -70,6 +70,25 @@
                                 </select>
                             </div>
                             <div class="flex flex-col mb-4">
+                                <label for="category_id">Type</label>
+                                <select
+                                    name="category_id"
+                                    v-model="formData.type"
+                                >
+                                    <option
+                                        value="none"
+                                        selected
+                                        disabled
+                                        hidden
+                                    >
+                                        Select a Type
+                                    </option>
+                                    <option value="freelance">Freelance</option>
+                                    <option value="personal">Personal</option>
+                                    <option value="both">Both</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col mb-4">
                                 <label for="status">Status</label>
                                 <select name="status" v-model="formData.status">
                                     <option
@@ -115,10 +134,25 @@ const formData = useForm({
     category_id: "",
     site: "",
     status: "",
+    freelance: false,
+    personal: false,
 });
 
 function submit() {
-    console.log(formData);
+    if (formData.type === "both") {
+        formData.freelance = true;
+        formData.personal = true;
+    } else if (formData.type === "freelance") {
+        formData.freelance = true;
+        formData.personal = false;
+    } else if (formData.type === "personal") {
+        formData.freelance = false;
+        formData.personal = true;
+    } else {
+        formData.freelance = false;
+        formData.personal = false;
+    }
+
     formData.post(route("projects.store"));
 }
 </script>

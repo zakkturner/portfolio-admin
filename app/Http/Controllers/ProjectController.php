@@ -23,6 +23,10 @@ class ProjectController extends Controller
             ]
         );
     }
+    public function apiIndex()
+    {
+        return Project::all();
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -43,7 +47,10 @@ class ProjectController extends Controller
             'short_description' => 'required',
             'category_id' => 'required',
             'site' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'freelance' => 'required',
+            'personal' => 'required'
+
         ]);
         $attributes['user_id'] = auth()->id();
         $attributes['img_src'] = request()->file('img_src')->store('project_images');
@@ -85,9 +92,13 @@ class ProjectController extends Controller
             'site' => 'required',
             'status' => 'required'
         ]);
+
+
         if ($attributes['img_src'] ?? false) {
             $attributes['img_src'] = request()->file('img_src')->store('project_images');
         }
+
+
         $project->update($attributes);
 
         return redirect()->route('projects.index')->with('message', 'Project Updated Successfully');

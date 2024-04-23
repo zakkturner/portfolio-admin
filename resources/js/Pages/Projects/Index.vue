@@ -17,7 +17,10 @@
                         >Add New Project</a
                     >
                 </div>
-                <div class="overflow-hidden shadow-sm sm:rounded-lg">
+                <div
+                    class="overflow-hidden shadow-sm sm:rounded-lg"
+                    v-if="projects.length > 0"
+                >
                     <div class="flex gap-2 flex-wrap h-screen w-full mx-auto">
                         <ProjectCard
                             v-for="project in projects"
@@ -25,6 +28,18 @@
                             :project="project"
                         />
                     </div>
+                </div>
+                <div
+                    class="flex w-full flex-col mt-40 justify-center items-center"
+                    v-else
+                >
+                    <img
+                        src="https://icons.veryicon.com/png/o/miscellaneous/effevo/box-empty-1.png"
+                        alt=""
+                        srcset=""
+                        width="200"
+                    />
+                    <h1 class="text-xl">Please Add your first project!</h1>
                 </div>
             </div>
         </div>
