@@ -25,6 +25,8 @@ class ProjectFactory extends Factory
             'name' => fake()->sentence(),
             'description' => fake()->realText(200),
             'short_description' =>  fake()->realText(100),
+            'img_src' => 'https://picsum.photos/1920/1080?random',
+            'status' => fake()->randomElement(['published', 'hidden']),
             'category_id' => Category::factory(),
             'site' => fake()->url(), // password
             'freelance' => $this->faker->boolean(),

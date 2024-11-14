@@ -15,16 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory()->create([
+        Category::factory()->create(['name' => 'frontend']);
+        Category::factory()->create(['name' => 'ecommerce']);
+        Category::factory()->create(['name' => 'php']);
+        $categories = Category::all();
+        \App\Models\User::factory()->has(Project::factory(10))->recycle($categories)->create([
             'name' => 'Zach Turner',
             'email' => 'zakkturner1993@gmail.com',
         ]);
 
-//         Category::factory()->create(['name' => 'frontend']);
-//         Category::factory()->create(['name' => 'ecommerce']);
-//        Category::factory()->create(['name' => 'php']);
-        $categories = Category::factory(4)->create();
-        $users = \App\Models\User::factory(10)->create();
-         Project::factory(10)->recycle($users)->create();
+
+//        $users = \App\Models\User::factory(10)->create();
+//         Project::factory(10)->recycle($users)->create();
     }
 }
