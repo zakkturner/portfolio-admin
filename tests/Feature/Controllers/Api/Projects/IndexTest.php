@@ -1,11 +1,9 @@
 <?php
 
-namespace Api\Controllers\Projects;
+namespace Controllers\Api\Projects;
 
-use App\Models\Category;
 use App\Models\Project;
 use App\Models\User;
-use Database\Factories\ProjectFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -16,7 +14,7 @@ class IndexTest extends TestCase
     {
         // Creating a user and authenticating as that user
         $user = User::factory()->create();
-        $this->actingAs($user, 'api'); // 'api' guard if you are using API authentication
+        $this->actingAs($user); // 'api' guard if you are using API authentication
 
         $response = $this->get('/api/v1/projects');
         $response->assertStatus(200);

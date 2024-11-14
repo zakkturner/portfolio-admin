@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\FormSubmission;
@@ -18,7 +18,10 @@ class FormSubmissionController extends Controller
         $user = request()->user();
 
         return Inertia::render(
-            'Submissions/Index',
+            'FormSubmissions/Index',
+            [
+                "submissions" => $user->submissions()->latest()->get()
+            ]
         );
     }
 
