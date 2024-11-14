@@ -17,7 +17,7 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->unique()->words
+            'name' => str(fake()->sentence)->beforeLast('.')->title()
         ];
     }
 }

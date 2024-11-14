@@ -20,10 +20,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'zakkturner1993@gmail.com',
         ]);
 
-        // Category::factory()->create(['name' => 'frontend']);
-        // Category::factory()->create(['name' => 'ecommerce']);
-        // Category::factory()->create(['name' => 'php']);
-        // \App\Models\User::factory(10)->create();
-        // Project::factory(10)->create();
+//         Category::factory()->create(['name' => 'frontend']);
+//         Category::factory()->create(['name' => 'ecommerce']);
+//        Category::factory()->create(['name' => 'php']);
+        $categories = Category::factory(4)->create();
+        $users = \App\Models\User::factory(10)->create();
+         Project::factory(10)->recycle($users)->create();
     }
 }

@@ -14,7 +14,4 @@ use App\Http\Controllers\Api\V1\ProjectController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
+Route::get('projects', ProjectController::class)->name('api.projects.index');
