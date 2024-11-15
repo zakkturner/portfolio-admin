@@ -27,7 +27,7 @@
                     >
                 </li>
                 <li>
-                    <a class="pt-trigger" href="#contact" data-animation="20"
+                    <a class="pt-trigger" href="/submissions" data-animation="20"
                         ><i class="menu-icon pe-7s-icon pe-7s-mail"></i>Form
                         Submissions</a
                     >

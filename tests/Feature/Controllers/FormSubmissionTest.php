@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class FormSubmissionTest extends TestCase
 {
-    use RefreshDatabase;
+
 
     public function test_form_submissions_return_a_200_response()
     {
@@ -21,5 +21,19 @@ class FormSubmissionTest extends TestCase
             ->assertInertia(fn(AssertableInertia $inertia) =>
             $inertia->component('Submissions/Index')
             );
+    }
+
+    public function test_form_submissions_has_submissions()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $response = $this->get(route('submissions.index'));
+
+        $response->assertInertia(fn (AssertableInertia $inertia) =>
+        $inertia->component('Submissions/Index')
+            ->has('submissions')
+        );
+
+
     }
 }

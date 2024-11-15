@@ -19,6 +19,9 @@ class FormSubmissionController extends Controller
 
         return Inertia::render(
             'Submissions/Index',
+            [
+                'submissions' => FormSubmission::all()
+            ]
         );
     }
 

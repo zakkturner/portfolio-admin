@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Category;
+use App\Models\FormSubmission;
 use App\Models\Project;
 use Illuminate\Database\Seeder;
 
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Zach Turner',
             'email' => 'zakkturner1993@gmail.com',
         ]);
+        FormSubmission::factory(10)->create();
 
 
 //        $users = \App\Models\User::factory(10)->create();

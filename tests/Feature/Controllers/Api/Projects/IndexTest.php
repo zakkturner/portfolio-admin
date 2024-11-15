@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class IndexTest extends TestCase
 {
-    use RefreshDatabase;
+
     public function test_project_index_returns_a_200_response()
     {
         // Creating a user and authenticating as that user
