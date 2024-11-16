@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/submissions',[FormSubmissionController::class, 'index'])->name('submissions.index');
+    Route::delete('/submissions/{submission}',[FormSubmissionController::class, 'destroy'])->name('submissions.destroy');
 });
 
 Route::middleware('auth')->group(function () {

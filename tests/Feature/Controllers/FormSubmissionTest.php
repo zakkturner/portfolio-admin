@@ -43,8 +43,13 @@ class FormSubmissionTest extends TestCase
     public function test_form_submissions_can_be_deleted(){
         $user = User::factory()->create();
         $this->actingAs($user);
-        $submissions = FormSubmission::factory(10)->create();
-        $response = $this->delete(route('submissions.destroy', ['id' => 1]))->assertOk()->count($submissions, 9);
+//        $submissions = FormSubmission::factory(10)->create();
+        $submission = FormSubmission::first();
+
+        $response = $this->delete(route('submissions.destroy', $submission));
+
+            $this->assertCount( 9, FormSubmission::all());
+            $this->assertRedirect(route('submissions.index'));
 
     }
 }

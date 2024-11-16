@@ -46,6 +46,7 @@ class FormSubmissionController extends Controller
      */
     public function show(FormSubmission $submission)
     {
+
         return Inertia::render('FormSubmissions/Show', [
             'submission' => $submission
         ]);
@@ -60,7 +61,10 @@ class FormSubmissionController extends Controller
      */
     public function destroy(FormSubmission $submission)
     {
+
         $submission->delete();
-        return redirect()->route('projects.index')->with('message', 'Project deleted Successfully');
+
+        return redirect()->route('submissions.index')
+            ->with('message', 'Submission by ' . $submission->name . ' Deleted Successfully');
     }
 }
