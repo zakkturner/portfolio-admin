@@ -10,57 +10,28 @@ use Inertia\Response;
 
 class FormSubmissionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $user = request()->user();
-
-        return Inertia::render(
-            'FormSubmissions/Index',
-            [
-                "submissions" => $user->submissions()->latest()->get()
-            ]
-        );
-    }
-
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function __invoke(Request $request)
     {
+
         $attributes = request()->validate([
             'name' => 'required',
             'email' => 'required',
             'message' => 'required'
         ]);
-        $attributes['user_id'] = auth()->id();
-        FormSubmission::create($attributes);
-        return redirect()->route('submissions.index')->with('message', 'Submission Created Successfully');
+        $attributes['user_id'] = 1;
+
+
+      $submission  = FormSubmission::create($attributes);
+
+      if ($submission) {
+        return response(['message' =>'Submission Created Successfully'],200);
+      } else{
+          return response(['message' =>'Submission Could not be created'],500);
+      }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(FormSubmission $submission)
-    {
-        return Inertia::render('FormSubmissions/Show', [
-            'submission' => $submission
-        ]);
-    }
-
-
-
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(FormSubmission $submission)
-    {
-        $submission->delete();
-        return redirect()->route('projects.index')->with('message', 'Project deleted Successfully');
-    }
 }
