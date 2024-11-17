@@ -15,7 +15,8 @@ class ProjectController extends Controller
 
     public function __invoke()
     {
-        return Project::all();
+
+        return Project::with('category')->where('status', 'published')->get();
     }
 
 
