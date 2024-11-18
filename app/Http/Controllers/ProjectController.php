@@ -35,7 +35,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Projects/Create');
+        return Inertia::render('Projects/Create', ["categories" => Category::all(),]);
     }
 
     /**
@@ -77,7 +77,8 @@ class ProjectController extends Controller
     {
         //
         return Inertia::render('Projects/Edit', [
-            'project' => $project
+            'project' => $project,
+            "categories" => Category::all(),
         ]);
     }
 

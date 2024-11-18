@@ -76,7 +76,6 @@ class CategoriesController extends Controller
             'projects' => $user->projects()->latest()->get(),
         'categories' => $categories
         ])->with('message', 'Successfully Updated Category');
-//        return redirect()->back();
     }
 
     /**

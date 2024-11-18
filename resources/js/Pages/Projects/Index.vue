@@ -46,10 +46,10 @@ const flashMessage = computed(() => page.props.flash?.message || null);
               <div class="mb-6" v-else>
 
                 <a
-
+                    disabled
                     href="/projects/create"
-                    class="bg-[#4d91de] text-white px-4 py-3 hover:bg-transparent border border-[#4d91de] mr-4"
-                >Add New Category</a
+                    class="bg-gray-300 text-white px-4 py-3 hover:cursor-default hover:text-white  border border-[#4d91de] mr-4"
+                >Add New Category (coming soon)</a
                 >
 
                 <button
