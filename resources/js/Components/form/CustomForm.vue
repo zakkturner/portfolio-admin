@@ -20,9 +20,8 @@
             <option value="none" selected disabled hidden>
                 Select a Category
             </option>
-            <option value="1">Frontend</option>
-            <option value="2">Ecommerce</option>
-            <option value="3">PHP</option>
+            <option :value="category.id" v-for="category in categories" class="capitalize">{{ category.name }}</option>
+
             <template #error>
                 <p class="text-red-500" v-if="formData.errors.category_id">
                     {{ formData.errors.category_id }}
@@ -68,6 +67,7 @@ import BaseSelect from "./BaseSelect.vue";
 
 const props = defineProps({
     project: Object,
+    categories: Object
 });
 
 // const type = ref("");
