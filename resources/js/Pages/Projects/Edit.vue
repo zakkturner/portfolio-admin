@@ -1,3 +1,17 @@
+<script setup>
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import Modal from "@/Components/Modal.vue";
+import CustomForm from "@/Components/form/CustomForm.vue";
+import DangerButton from "@/Components/DangerButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+import { ref } from "vue";
+import { useForm, Link } from "@inertiajs/vue3";
+const props = defineProps({
+  project: Object,
+  categories: Object
+});
+const show = ref(false);
+</script>
 <template>
     <AuthenticatedLayout>
         <div class="py-12">
@@ -10,7 +24,7 @@
                     </div>
                     <div class="bg-white p-6">
                         <h1>Edit {{ project.name }}</h1>
-                        <CustomForm :project="project" @submit="submit" />
+                        <CustomForm :categories="categories" :project="project" />
                     </div>
                 </div>
             </div>
@@ -35,18 +49,6 @@
     </Modal>
 </template>
 
-<script setup>
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import Modal from "@/Components/Modal.vue";
-import CustomForm from "@/Components/form/CustomForm.vue";
-import DangerButton from "@/Components/DangerButton.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
-import { ref } from "vue";
-import { useForm, Link } from "@inertiajs/vue3";
-const props = defineProps({
-    project: Object,
-});
-const show = ref(false);
-</script>
+
 
 <style lang="scss" scoped></style>

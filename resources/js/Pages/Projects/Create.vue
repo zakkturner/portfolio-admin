@@ -1,3 +1,40 @@
+<script setup>
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import { useForm } from "@inertiajs/vue3";
+
+const props = defineProps({
+  categories: Object
+});
+const formData = useForm({
+  name: "",
+  description: "",
+  short_description: "",
+  img_src: null,
+  category_id: "",
+  site: "",
+  status: "",
+  freelance: false,
+  personal: false,
+});
+
+function submit() {
+  if (formData.type === "both") {
+    formData.freelance = true;
+    formData.personal = true;
+  } else if (formData.type === "freelance") {
+    formData.freelance = true;
+    formData.personal = false;
+  } else if (formData.type === "personal") {
+    formData.freelance = false;
+    formData.personal = true;
+  } else {
+    formData.freelance = false;
+    formData.personal = false;
+  }
+
+  formData.post(route("projects.store"));
+}
+</script>
 <template>
     <AuthenticatedLayout>
         <div class="py-12">
@@ -122,37 +159,4 @@
         </div>
     </AuthenticatedLayout>
 </template>
-<script setup>
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { useForm } from "@inertiajs/vue3";
 
-const formData = useForm({
-    name: "",
-    description: "",
-    short_description: "",
-    img_src: null,
-    category_id: "",
-    site: "",
-    status: "",
-    freelance: false,
-    personal: false,
-});
-
-function submit() {
-    if (formData.type === "both") {
-        formData.freelance = true;
-        formData.personal = true;
-    } else if (formData.type === "freelance") {
-        formData.freelance = true;
-        formData.personal = false;
-    } else if (formData.type === "personal") {
-        formData.freelance = false;
-        formData.personal = true;
-    } else {
-        formData.freelance = false;
-        formData.personal = false;
-    }
-
-    formData.post(route("projects.store"));
-}
-</script>
