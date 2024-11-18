@@ -1,14 +1,19 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import ProjectCard from "@/Components/projects/ProjectCard.vue";
-import { Head } from "@inertiajs/vue3";
-import {ref} from "vue";
+import {Head, usePage} from "@inertiajs/vue3";
+import {computed, ref} from "vue";
 const props = defineProps({
   projects: Object,
   categories: Object
 });
 
-const viewCategories = ref(false)
+const viewCategories = ref(false);
+
+const page = usePage();
+
+
+const flashMessage = computed(() => page.props.flash?.message || null);
 
 </script>
 
@@ -21,7 +26,6 @@ const viewCategories = ref(false)
                 Dashboard
             </h2>
         </template>
-
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="mb-6"   v-if="!viewCategories">
@@ -93,6 +97,15 @@ const viewCategories = ref(false)
                 </div>
             </div>
         </div>
+      <div v-if="flashMessage !== null" class="fixed bg-green-500 rounded bottom-10 right-0"  >
+        <button
+            @click.prevent="() => page.props.flash.message = null"
+            class="rounded-full w-1 h-1 flex justify-center items-center p-4 bg-white border-gray-200 absolute -left-4 -top-4">
+          X
+        </button>
+        <h4 class="text-white text-lg p-4">{{flashMessage}}</h4>
+
+      </div>
     </AuthenticatedLayout>
 </template>
 

@@ -72,7 +72,7 @@ class CategoriesController extends Controller
         $category->save();
         $user = $request->user();
         $categories = Category::all();
-       return Inertia::render('Projects/Index',[
+       return to_route('projects.index',[
             'projects' => $user->projects()->latest()->get(),
         'categories' => $categories
         ])->with('message', 'Successfully Updated Category');
