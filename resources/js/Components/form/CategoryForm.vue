@@ -6,13 +6,19 @@ import BaseInput from "@/Components/form/BaseInput.vue";
 import {router, useForm} from "@inertiajs/vue3";
 const props = defineProps({
   category: Object,
+  edit: Boolean
 });
 const formData = useForm({
-  name: props.category.name || "",
+  name: props.category?.name || "",
 
 });
 const submit = () =>{
+  if(props.edit){
+
   router.patch(route('categories.update', props.category.id), formData );
+  } else{
+    router.post(route('categories.store'), formData );
+  }
 }
 </script>
 
