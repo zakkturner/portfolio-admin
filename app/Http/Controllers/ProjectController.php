@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -19,7 +20,8 @@ class ProjectController extends Controller
         return Inertia::render(
             'Projects/Index',
             [
-                "projects" => $user->projects()->latest()->get()
+                "projects" => $user->projects()->latest()->get(),
+                "categories" => Category::all(),
             ]
         );
     }
@@ -33,7 +35,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Projects/Create');
+        return Inertia::render('Projects/Create', ["categories" => Category::all(),]);
     }
 
     /**
@@ -75,7 +77,8 @@ class ProjectController extends Controller
     {
         //
         return Inertia::render('Projects/Edit', [
-            'project' => $project
+            'project' => $project,
+            "categories" => Category::all(),
         ]);
     }
 

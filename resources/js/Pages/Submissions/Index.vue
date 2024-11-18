@@ -61,7 +61,7 @@ const formattedDate = (date) => computed(()=>{
         <h4>Date</h4>
         <h4>Actions</h4>
       </div>
-        <ul class="divide-y bg-gray-600 rounded">
+        <ul class=" divide-y bg-gray-600 rounded">
           <li v-for="submission in submissions" class="text-white p-2 grid grid-cols-5 gap-x-8 ">
             <span>
               {{submission.name}}
