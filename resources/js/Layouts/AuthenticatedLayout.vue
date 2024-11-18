@@ -168,7 +168,7 @@ const showingNavigationDropdown = ref(false);
             <the-header></the-header>
 
             <!-- Page Content -->
-            <main>
+            <main class="py-10">
                 <slot />
             </main>
         </div>

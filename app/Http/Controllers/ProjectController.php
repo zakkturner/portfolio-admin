@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -19,7 +20,8 @@ class ProjectController extends Controller
         return Inertia::render(
             'Projects/Index',
             [
-                "projects" => $user->projects()->latest()->get()
+                "projects" => $user->projects()->latest()->get(),
+                "categories" => Category::all(),
             ]
         );
     }

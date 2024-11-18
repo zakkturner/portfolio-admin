@@ -10,7 +10,7 @@
                     </div>
                     <div class="bg-white p-6">
                         <h1>Edit {{ project.name }}</h1>
-                        <CustomForm :project="project" @submit="submit" />
+                        <CustomForm :project="project" />
                     </div>
                 </div>
             </div>
