@@ -24,7 +24,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+
+        return Inertia::render('Categories/Create');
     }
 
     /**
@@ -32,7 +33,16 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attr = $request->validate([
+            'name'=> 'required|min:3'
+        ]);
+        $user = $request->user();
+        Category::create($attr);
+
+        return to_route('projects.index',[
+            'projects' => $user->projects()->latest()->get(),
+            'categories' => Category::all(),
+        ])->with('message', 'Successfully Created Category');
     }
 
     /**
