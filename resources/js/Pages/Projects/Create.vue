@@ -101,9 +101,7 @@ function submit() {
                                     >
                                         Select a Category
                                     </option>
-                                    <option value="1">Frontend</option>
-                                    <option value="2">Ecommerce</option>
-                                    <option value="3">PHP</option>
+                                  <option :value="category.id" v-for="category in categories" class="capitalize">{{ category.name }}</option>
                                 </select>
                             </div>
                             <div class="flex flex-col mb-4">
