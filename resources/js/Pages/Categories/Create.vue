@@ -3,26 +3,15 @@
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-          <div class="flex justify-end px-6 pt-6">
-            <DangerButton @click="show = true">
-              Delete Category
-            </DangerButton>
-          </div>
-          <div class="bg-white p-6">
-            <h1 class="capitalize">Edit {{ category.name }}</h1>
-            <CategoryForm :category="category" :edit="true" />
+
+          <div class="bg-white p-6" >
+            <h1 class="capitalize">Create Category</h1>
+            <CategoryForm  :edit="false" />
             <hr />
-          <div class="mt-4">
-            <h2 class="uppercase">{{category.name}} Projects</h2>
-            <ul>
-              <li v-for="project in projects">
-                <a :href="`/projects/${project.id}/edit`">{{project.name}}</a>
-              </li>
-            </ul>
-          </div>
-            <div class="mt-4">
-              <a href="/projects">Go Back</a>
-            </div>
+
+              <div class="mt-4">
+                <a href="/projects">Go Back</a>
+              </div>
           </div>
         </div>
       </div>
@@ -58,10 +47,7 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { ref } from "vue";
 import { useForm, Link } from "@inertiajs/vue3";
 import CategoryForm from "@/Components/form/CategoryForm.vue";
-const props = defineProps({
-  projects: Object,
-  category: Object
-});
+
 const show = ref(false);
 </script>
 
