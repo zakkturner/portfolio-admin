@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\CategoriesController;
+use App\Http\Controllers\Api\V1\FeedbackController;
 use App\Http\Controllers\Api\V1\FormSubmissionController;
 use App\Models\FormSubmission;
 use Illuminate\Http\Request;
@@ -20,3 +21,4 @@ use App\Http\Controllers\Api\V1\ProjectController;
 Route::get('projects', ProjectController::class)->name('api.projects.index');
 Route::post('/submissions', FormSubmissionController::class);
 Route::get('/categories', CategoriesController::class);
+Route::post('/feedback', FeedbackController::class);
